@@ -96,8 +96,6 @@ def main_worker(args):
     best_train_acc1 = 0.0
     best_train_acc5 = 0.0
 
-    if args.resume:
-        best_acc1 = resume(args, model, learning_scheduler)
 
     # Data loading code
     if args.evaluate:
@@ -253,25 +251,6 @@ def set_gpu(args):
     print(f'==> Num of Logical GPUs:{len(gpus)}')
     print('-------------Finishing Setting GPU--------------')
     assert len(gpus) > 0, "Not enough GPU hardware devices available"
-
-
-def resume(args, model, lr_policy):
-    if os.path.isfile(args.resume):
-        print(f"=> Loading checkpoint '{args.resume}'")
-
-        checkpoint = torch.load(args.resume, map_location=f"cuda:{args.multigpu[0]}")
-        if args.start_epoch is None:
-            print(f"=> Setting new start epoch at {checkpoint['epoch']}")
-            args.start_epoch = checkpoint["epoch"]
-            lr_policy(args.start_epoch)
-        model.load_weights(args.pretrained)
-
-
-        print(f"=> Loaded checkpoint '{args.resume}' (epoch {checkpoint['epoch']})")
-
-        return best_acc1
-    else:
-        print(f"=> No checkpoint found at '{args.resume}'")
 
 
 def pretrained(args, model):

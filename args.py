@@ -105,13 +105,6 @@ def parse_arguments():
     )
     parser.add_argument("--num-classes", default=10, type=int)
     parser.add_argument(
-        "--resume",
-        default="",
-        type=str,
-        metavar="PATH",
-        help="path to latest checkpoint (default: none)",
-    )
-    parser.add_argument(
         "-e",
         "--evaluate",
         dest="evaluate",
