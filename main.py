@@ -194,7 +194,6 @@ def main_worker(args):
         best_acc5=best_acc5,
         best_train_acc1=best_train_acc1,
         best_train_acc5=best_train_acc5,
-        prune_rate=args.prune_rate,
         curr_acc1=acc1,
         curr_acc5=acc5,
         base_config=args.config,
@@ -360,7 +359,6 @@ def write_result_to_csv(**kwargs):
         results.write_text(
             "Date Finished, "
             "Set, "
-            "Norm, "
             "Batch Size, "
             "Base Config, "
             "Name, "
@@ -389,7 +387,6 @@ def write_result_to_csv(**kwargs):
         f.write(
             (   "{now}, "
                 "{set}, "
-                "{norm}, "
                 "{batch_size}, "
                 "{base_config}, "
                 "{name}, "
